@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All-in-One Tools Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+            --gray: #6b7280;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --text: #1f2937;
+            --bg: #f9fafb;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --gradient-start: #6366f1;
+            --gradient-end: #8b5cf6;
+            --neumorphism-light: #e6e9ef;
+            --neumorphism-dark: #1a1c23;
+        }
+
+        .dark-mode {
+            --text: #f3f4f6;
+            --bg: #111827;
+            --card-bg: rgba(30, 30, 40, 0.6);
+            --shadow: rgba(0, 0, 0, 0.3);
+            --gradient-start: #4338ca;
+            --gradient-end: #7c3aed;
+            --neumorphism-light: #2a2d36;
+            --neumorphism-dark: #15171e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        .mode-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+        }
+
+        .mode-toggle:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            z-index: -1;
+            background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.1) 30%, transparent 30%, transparent 40%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.1) 50%, transparent 50%);
+            background-size: 10% 10%;
+            animation: moveBackground 45s infinite linear;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tools Section */
+        .tools-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            background-color: var(--card-bg);
+            color: var(--text);
+            font-size: 1rem;
+            box-shadow: 0 4px 12px var(--shadow);
+            outline: none;
+        }
+
+        .search-bar::placeholder {
+            color: var(--gray);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 24px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 32px var(--shadow);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .tool-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .tool-desc {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .open-tool-btn {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .open-tool-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Tool Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--bg);
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: var(--gray);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+
+        .tool-container {
+            padding: 1rem 0;
+        }
+
+        /* Tool-specific styles */
+        .converter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--gray);
+            background-color: var(--card-bg);
+            color: var(--text);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .result-box {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+            margin: 0.25rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--text);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        /* Stopwatch & Timer Styles */
+        .time-display {
+            font-size: 3rem;
+            text-align: center;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+
+        .lap-times {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+        }
+
+        /* Color Picker Styles */
+        .color-preview {
+            width: 100%;
+            height: 100px;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .color-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .color-value {
+            padding: 0.5rem;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .color-value:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Password Strength Meter */
+        .strength-meter {
+            height: 10px;
+            width: 100%;
+            border-radius: 5px;
+            background-color: #eee;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .strength-meter-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .converter-grid, .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .color-values {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Ripple effect for buttons */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+
+        .ripple:active:after {
+            transform: scale(0, 0);
+            opacity: .3;
+            transition: 0s;
+        }
+
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            margin: 0 10px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Tool Tips */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            color: var(--primary);
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--card-bg);
+            color: var(--text);
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-tools"></i>
+                <span>All-in-One Tools Hub</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mode-toggle" id="modeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>10 Powerful Tools. One Smart Website.</h1>
+        <p>Streamline your workflow with our comprehensive suite of utilities, all in one place.</p>
+        <button class="cta-button ripple" id="exploreTools">Explore Tools</button>
+    </section>
+
+    <section class="tools-section" id="tools">
+        <h2 class="section-title">Our Tools</h2>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search for tools..." id="toolSearch">
+        </div>
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Tool cards will be generated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="tools-section" id="about">
+        <h2 class="section-title">About</h2>
+        <div class="result-box">
+            <p>All-in-One Tools Hub is a comprehensive collection of utility tools designed to make your digital life easier. Built with pure HTML, CSS, and JavaScript, this application offers 10 powerful tools in one convenient location.</p>
+            <p>Our mission is to provide users with a seamless experience for common tasks without the need to visit multiple websites or install additional software.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="tools-section" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="result-box">
+            <p>Have questions or suggestions? We'd love to hear from you!</p>
+            <p>Email: contact@tools-hub.com</p>
+            <p>Phone: +1 (555) 123-4567</p>
+        </div>
+    </section>
+
+    <!-- Tool Modals -->
+    <div class="modal" id="toolModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="breadcrumb" id="breadcrumb">
+                <a href="#" id="homeLink">Home</a>
+                <span>&gt;</span>
+                <span id="currentTool">Tool Name</span>
+            </div>
+            <div class="tool-container" id="toolContainer">
+                <!-- Tool content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <footer>
+        <p>&copy; 2025 Tools Hub | Built with HTML, CSS & JS</p>
+    </footer>
+
+    <script>
+        // Tool Data
+        const tools = [
+            {
+                id: 'unit-converter',
+                name: 'Unit Converter',
+                icon: 'fas fa-exchange-alt',
+                description: 'Convert between different units of measurement including length, weight, temperature, and more.',
+                category: 'Conversion'
+            },
+            {
+                id: 'age-calculator',
+                name: 'Age Calculator',
+                icon: 'fas fa-birthday-cake',
+                description: 'Calculate your exact age in years, months, and days, plus countdown to your next birthday.',
+                category: 'Calculation'
+            },
+            {
+                id: 'bmi-calculator',
+                name: 'BMI Calculator',
+                icon: 'fas fa-weight',
+                description: 'Calculate your Body Mass Index and determine your health category based on WHO standards.',
+                category: 'Health'
+            },
+            {
+                id: 'word-counter',
+                name: 'Word & Character Counter',
+                icon: 'fas fa-font',
+                description: 'Count words, characters, reading time, and analyze keyword density in your text.',
+                category: 'Text'
+            },
+            {
+                id: 'password-generator',
+                name: 'Password Generator',
+                icon: 'fas fa-key',
+                description: 'Generate strong, secure passwords with customizable length and character sets.',
+                category: 'Security'
+            },
+            {
+                id: 'text-case-converter',
+                name: 'Text Case Converter',
+                icon: 'fas fa-text-height',
+                description: 'Convert text between uppercase, lowercase, title case, sentence case and more.',
+                category: 'Text'
+            },
+            {
+                id: 'percentage-calculator',
+                name: 'Percentage Calculator',
+                icon: 'fas fa-percent',
+                description: 'Calculate percentages, increases, decreases, and other percentage-related values.',
+                category: 'Calculation'
+            },
+            {
+                id: 'stopwatch-timer',
+                name: 'Stopwatch & Timer',
+                icon: 'fas fa-stopwatch',
+                description: 'Track time with stopwatch features and set countdown timers with alerts.',
+                category: 'Time'
+            },
+            {
+                id: 'color-picker',
+                name: 'Color Picker & Converter',
+                icon: 'fas fa-palette',
+                description: 'Pick colors and convert between HEX, RGB, HSL color formats with copy functionality.',
+                category: 'Design'
+            },
+            {
+                id: 'notepad',
+                name: 'Online Notepad',
+                icon: 'fas fa-sticky-note',
+                description: 'Take notes that auto-save to your browser, with download and export options.',
+                category: 'Productivity'
+            }
+        ];
+
+        // DOM Elements
+        const toolsGrid = document.getElementById('toolsGrid');
+        const toolSearch = document.getElementById('toolSearch');
+        const toolModal = document.getElementById('toolModal');
+        const closeModal = document.getElementById('closeModal');
+        const breadcrumb = document.getElementById('breadcrumb');
+        const currentToolElement = document.getElementById('currentTool');
+        const toolContainer = document.getElementById('toolContainer');
+        const homeLink = document.getElementById('homeLink');
+        const modeToggle = document.getElementById('modeToggle');
+        const exploreToolsBtn = document.getElementById('exploreTools');
+        const toast = document.getElementById('toast');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load tools
+            renderTools();
+            
+            // Set up event listeners
+            toolSearch.addEventListener('input', filterTools);
+            closeModal.addEventListener('click', closeToolModal);
+            homeLink.addEventListener('click', closeToolModal);
+            modeToggle.addEventListener('click', toggleDarkMode);
+            exploreToolsBtn.addEventListener('click', scrollToTools);
+            
+            // Check for saved dark mode preference
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === toolModal) {
+                    closeToolModal();
+                }
+            });
+            
+            // Set up keyboard shortcuts
+            document.addEventListener('keydown', handleKeyboardShortcuts);
+            
+            // Load last used tool if any
+            const lastUsedTool = localStorage.getItem('lastUsedTool');
+            if (lastUsedTool) {
+                // Optional: Auto-open last used tool
+                // openTool(lastUsedTool);
+            }
+            
+            // Load notepad content if any
+            const notepadContent = localStorage.getItem('notepadContent');
+            if (notepadContent) {
+                // Will be loaded when notepad is opened
+            }
+        });
+
+        // Render tool cards
+        function renderTools() {
+            toolsGrid.innerHTML = '';
+            tools.forEach(tool => {
+                const toolCard = document.createElement('div');
+                toolCard.className = 'tool-card';
+                toolCard.innerHTML = `
+                    <div class="tool-icon">
+                        <i class="${tool.icon}"></i>
+                    </div>
+                    <h3 class="tool-name">${tool.name}</h3>
+                    <p class="tool-desc">${tool.description}</p>
+                    <button class="open-tool-btn ripple" data-tool-id="${tool.id}">Open Tool</button>
+                `;
+                toolsGrid.appendChild(toolCard);
+            });
+            
+            // Add event listeners to tool buttons
+            document.querySelectorAll('.open-tool-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const toolId = this.getAttribute('data-tool-id');
+                    openTool(toolId);
+                });
+            });
+        }
+
+        // Filter tools based on search input
+        function filterTools() {
+            const searchTerm = toolSearch.value.toLowerCase();
+            const toolCards = document.querySelectorAll('.tool-card');
+            
+            toolCards.forEach(card => {
+                const toolName = card.querySelector('.tool-name').textContent.toLowerCase();
+                const toolDesc = card.querySelector('.tool-desc').textContent.toLowerCase();
+                
+                if (toolName.includes(searchTerm) || toolDesc.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Open tool modal
+        function openTool(toolId) {
+            const tool = tools.find(t => t.id === toolId);
+            if (!tool) return;
+            
+            currentToolElement.textContent = tool.name;
+            toolContainer.innerHTML = getToolHTML(toolId);
+            
+            // Save last used tool
+            localStorage.setItem('lastUsedTool', toolId);
+            
+            // Initialize tool functionality
+            initTool(toolId);
+            
+            toolModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close tool modal
+        function closeToolModal() {
+            toolModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Toggle dark/light mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('darkMode', null);
+                modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        }
+
+        // Scroll to tools section
+        function scrollToTools() {
+            document.getElementById('tools').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            toast.textContent = message;
+            toast.style.backgroundColor = type === 'success' ? 'var(--success)' : 
+                                         type === 'error' ? 'var(--danger)' : 
+                                         type === 'warning' ? 'var(--warning)' : 'var(--primary)';
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Handle keyboard shortcuts
+        function handleKeyboardShortcuts(e) {
+            if (e.ctrlKey || e.metaKey) return; // Avoid conflicts with browser shortcuts
+            
+            if (e.key === 'n' || e.key === 'N') {
+                e.preventDefault();
+                openTool('notepad');
+            } else if (e.key === 'c' || e.key === 'C') {
+                e.preventDefault();
+                openTool('color-picker');
+            } else if (e.key === 'p' || e.key === 'P') {
+                e.preventDefault();
+                openTool('password-generator');
+            } else if (e.key === 'Escape') {
+                closeToolModal();
+            }
+        }
+
+        // Get HTML for specific tool
+        function getToolHTML(toolId) {
+            switch(toolId) {
+                case 'unit-converter':
+                    return `
+                        <h3>Unit Converter</h3>
+                        <p>Convert between different units of measurement</p>
+                        <div class="input-group">
+                            <label for="conversionType">Conversion Type</label>
+                            <select id="conversionType">
+                                <option value="length">Length</option>
+                                <option value="weight">Weight</option>
+                                <option value="temperature">Temperature</option>
+                                <option value="time">Time</option>
+                                <option value="speed">Speed</option>
+                            </select>
+                        </div>
+                        <div class="converter-grid">
+                            <div class="input-group">
+                                <label for="fromValue">From</label>
+                                <input type="number" id="fromValue" placeholder="Enter value" step="any">
+                            </div>
+                            <div class="input-group">
+                                <label for="toValue">To</label>
+                                <input type="number" id="toValue" placeholder="Result" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label for="fromUnit">From Unit</label>
+                                <select id="fromUnit"></select>
+                            </div>
+                            <div class="input-group">
+                                <label for="toUnit">To Unit</label>
+                                <select id="toUnit"></select>
+                            </div>
+                        </div>
+                        <button class="btn ripple" id="convertUnits">Convert</button>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Select conversion type and units, then enter a value to convert</span>
+                        </div>
+                    `;
+                    
+                case 'age-calculator':
+                    return `
+                        <h3>Age Calculator</h3>
+                        <p>Calculate your exact age and next birthday countdown</p>
+                        <div class="input-group">
+                            <label for="birthDate">Date of Birth</label>
+                            <input type="date" id="birthDate" max="${new Date().toISOString().split('T')[0]}">
+                        </div>
+                        <button class="btn ripple" id="calculateAge">Calculate Age</button>
+                        <div class="result-box" id="ageResult" style="display: none;">
+                            <h4>Your Age</h4>
+                            <p id="exactAge"></p>
+                            <p id="nextBirthday"></p>
+                        </div>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Enter your date of birth to calculate your exact age and next birthday countdown</span>
+                        </div>
+                    `;
+                    
+                case 'bmi-calculator':
+                    return `
+                        <h3>BMI Calculator</h3>
+                        <p>Calculate your Body Mass Index</p>
+                        <div class="calculator-grid">
+                            <div>
+                                <div class="input-group">
+                                    <label for="height">Height (cm)</label>
+                                    <input type="number" id="height" placeholder="Enter height" min="1" max="300">
+                                </div>
+                                <div class="input-group">
+                                    <label for="weight">Weight (kg)</label>
+                                    <input type="number" id="weight" placeholder="Enter weight" min="1" max="500">
+                                </div>
+                                <button class="btn ripple" id="calculateBMI">Calculate BMI</button>
+                            </div>
+                            <div class="result-box" id="bmiResult" style="display: none;">
+                                <h4>Your BMI Result</h4>
+                                <p id="bmiValue"></p>
+                                <p id="bmiCategory"></p>
+                                <p id="bmiRange"></p>
+                            </div>
+                        </div>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Enter your height and weight to calculate your BMI and health category</span>
+                        </div>
+                    `;
+                    
+                case 'word-counter':
+                    return `
+                        <h3>Word & Character Counter</h3>
+                        <p>Analyze your text content</p>
+                        <div class="input-group">
+                            <label for="textInput">Paste your text here</label>
+                            <textarea id="textInput" rows="8" placeholder="Start typing or paste your text here..."></textarea>
+                        </div>
+                        <div class="result-box">
+                            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                                <div style="margin: 0.5rem;">
+                                    <h4>Words</h4>
+                                    <p id="wordCount">0</p>
+                                </div>
+                                <div style="margin: 0.5rem;">
+                                    <h4>Characters</h4>
+                                    <p id="charCount">0</p>
+                                </div>
+                                <div style="margin: 0.5rem;">
+                                    <h4>Characters (no spaces)</h4>
+                                    <p id="charCountNoSpaces">0</p>
+                                </div>
+                                <div style="margin: 0.5rem;">
+                                    <h4>Sentences</h4>
+                                    <p id="sentenceCount">0</p>
+                                </div>
+                                <div style="margin: 0.5rem;">
+                                    <h4>Paragraphs</h4>
+                                    <p id="paragraphCount">0</p>
+                                </div>
+                                <div style="margin: 0.5rem;">
+                                    <h4>Reading Time</h4>
+                                    <p id="readingTime">0 min</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn ripple" id="downloadReport">Download Report</button>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Paste or type text to analyze word count, character count, reading time and more</span>
+                        </div>
+                    `;
+                    
+                case 'password-generator':
+                    return `
+                        <h3>Password Generator</h3>
+                        <p>Create strong and secure passwords</p>
+                        <div class="input-group">
+                            <label for="passwordLength">Password Length: <span id="lengthValue">12</span></label>
+                            <input type="range" id="passwordLength" min="6" max="64" value="12">
+                        </div>
+                        <div class="input-group">
+                            <label>
+                                <input type="checkbox" id="uppercase" checked>
+                                Include Uppercase Letters (A-Z)
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <label>
+                                <input type="checkbox" id="lowercase" checked>
+                                Include Lowercase Letters (a-z)
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <label>
+                                <input type="checkbox" id="numbers" checked>
+                                Include Numbers (0-9)
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <label>
+                                <input type="checkbox" id="symbols">
+                                Include Symbols (!@#$%^&*)
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <label for="generatedPassword">Generated Password</label>
+                            <input type="text" id="generatedPassword" readonly>
+                        </div>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button class="btn ripple" id="generatePassword">Generate Password</button>
+                            <button class="btn btn-secondary ripple" id="copyPassword">Copy</button>
+                            <button class="btn btn-secondary ripple" id="downloadPassword">Download as TXT</button>
+                        </div>
+                        <div class="strength-meter">
+                            <div class="strength-meter-fill" id="strengthMeter"></div>
+                        </div>
+                        <p>Password Strength: <span id="passwordStrength">-</span></p>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Customize your password with length and character options, then generate and copy</span>
+                        </div>
+                    `;
+                    
+                case 'text-case-converter':
+                    return `
+                        <h3>Text Case Converter</h3>
+                        <p>Convert text between different cases</p>
+                        <div class="input-group">
+                            <label for="caseInput">Enter your text</label>
+                            <textarea id="caseInput" rows="5" placeholder="Type or paste text here..."></textarea>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn ripple" data-case="upper">UPPERCASE</button>
+                            <button class="btn ripple" data-case="lower">lowercase</button>
+                            <button class="btn ripple" data-case="title">Title Case</button>
+                            <button class="btn ripple" data-case="sentence">Sentence case</button>
+                            <button class="btn ripple" data-case="camel">camelCase</button>
+                            <button class="btn ripple" data-case="pascal">PascalCase</button>
+                            <button class="btn ripple" data-case="snake">snake_case</button>
+                            <button class="btn ripple" data-case="kebab">kebab-case</button>
+                        </div>
+                        <div class="input-group">
+                            <label for="caseOutput">Converted Text</label>
+                            <textarea id="caseOutput" rows="5" readonly></textarea>
+                        </div>
+                        <button class="btn ripple" id="copyCaseText">Copy Converted Text</button>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Enter text and choose from various case conversion options</span>
+                        </div>
+                    `;
+                    
+                case 'percentage-calculator':
+                    return `
+                        <h3>Percentage Calculator</h3>
+                        <p>Calculate percentages in different modes</p>
+                        <div class="input-group">
+                            <label for="percentageMode">Calculation Mode</label>
+                            <select id="percentageMode">
+                                <option value="xOfY">X% of Y</option>
+                                <option value="incDec">X increased/decreased by Y%</option>
+                                <option value="aOfB">What % is A of B</option>
+                            </select>
+                        </div>
+                        <div id="percentageInputs">
+                            <div class="input-group">
+                                <label for="percentX">Percentage (X)</label>
+                                <input type="number" id="percentX" placeholder="Enter percentage">
+                            </div>
+                            <div class="input-group">
+                                <label for="percentY">Value (Y)</label>
+                                <input type="number" id="percentY" placeholder="Enter value">
+                            </div>
+                        </div>
+                        <button class="btn ripple" id="calculatePercentage">Calculate</button>
+                        <div class="result-box" id="percentageResult" style="display: none;">
+                            <h4>Result</h4>
+                            <p id="percentageResultText"></p>
+                        </div>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Choose calculation mode and enter values to calculate percentages</span>
+                        </div>
+                    `;
+                    
+                case 'stopwatch-timer':
+                    return `
+                        <h3>Stopwatch & Timer</h3>
+                        <div class="btn-group">
+                            <button class="btn ripple" id="stopwatchTab">Stopwatch</button>
+                            <button class="btn btn-secondary ripple" id="timerTab">Timer</button>
+                        </div>
+                        <div id="stopwatchSection">
+                            <div class="time-display" id="stopwatchDisplay">00:00:00.00</div>
+                            <div class="btn-group">
+                                <button class="btn ripple" id="startStopwatch">Start</button>
+                                <button class="btn ripple" id="lapStopwatch">Lap</button>
+                                <button class="btn ripple" id="resetStopwatch">Reset</button>
+                            </div>
+                            <div class="lap-times" id="lapTimes"></div>
+                            <button class="btn ripple" id="exportLaps">Export Laps as TXT</button>
+                        </div>
+                        <div id="timerSection" style="display: none;">
+                            <div class="input-group">
+                                <label for="timerHours">Hours</label>
+                                <input type="number" id="timerHours" min="0" max="99" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="timerMinutes">Minutes</label>
+                                <input type="number" id="timerMinutes" min="0" max="59" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="timerSeconds">Seconds</label>
+                                <input type="number" id="timerSeconds" min="0" max="59" value="0">
+                            </div>
+                            <div class="time-display" id="timerDisplay">00:00:00</div>
+                            <div class="btn-group">
+                                <button class="btn ripple" id="startTimer">Start</button>
+                                <button class="btn ripple" id="pauseTimer">Pause</button>
+                                <button class="btn ripple" id="resetTimer">Reset</button>
+                            </div>
+                            <audio id="timerSound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" preload="auto"></audio>
+                        </div>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Use the stopwatch to track time with lap functionality, or set a countdown timer</span>
+                        </div>
+                    `;
+                    
+                case 'color-picker':
+                    return `
+                        <h3>Color Picker & Converter</h3>
+                        <div class="input-group">
+                            <label for="colorPicker">Select a Color</label>
+                            <input type="color" id="colorPicker" value="#4f46e5">
+                        </div>
+                        <div class="color-preview" id="colorPreview"></div>
+                        <div class="color-values">
+                            <div class="color-value" data-format="hex">
+                                <h4>HEX</h4>
+                                <p id="hexValue">#4f46e5</p>
+                            </div>
+                            <div class="color-value" data-format="rgb">
+                                <h4>RGB</h4>
+                                <p id="rgbValue">rgb(79, 70, 229)</p>
+                            </div>
+                            <div class="color-value" data-format="hsl">
+                                <h4>HSL</h4>
+                                <p id="hslValue">hsl(243, 75%, 59%)</p>
+                            </div>
+                        </div>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Select a color to see its values in different formats and copy to clipboard</span>
+                        </div>
+                    `;
+                    
+                case 'notepad':
+                    return `
+                        <h3>Online Notepad</h3>
+                        <p>Your notes are automatically saved as you type</p>
+                        <div class="input-group">
+                            <label for="notepadTitle">Note Title</label>
+                            <input type="text" id="notepadTitle" placeholder="Enter title">
+                        </div>
+                        <div class="input-group">
+                            <label for="notepadContent">Note Content</label>
+                            <textarea id="notepadContent" rows="12" placeholder="Start typing your note here..."></textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button class="btn ripple" id="saveNote">Save Note</button>
+                            <button class="btn ripple" id="downloadNote">Download as TXT</button>
+                            <button class="btn btn-secondary ripple" id="clearNote">Clear Note</button>
+                        </div>
+                        <div class="tooltip">ℹ️
+                            <span class="tooltiptext">Type your notes - they auto-save to your browser. Download or clear when needed</span>
+                        </div>
+                    `;
+                    
+                default:
+                    return `
+                        <h3>Tool Not Found</h3>
+                        <p>This tool is not available. Please try another one.</p>
+                    `;
+            }
+        }
+
+        // Initialize tool functionality
+        function initTool(toolId) {
+            switch(toolId) {
+                case 'unit-converter':
+                    initUnitConverter();
+                    break;
+                    
+                case 'age-calculator':
+                    document.getElementById('calculateAge').addEventListener('click', calculateAge);
+                    break;
+                    
+                case 'bmi-calculator':
+                    document.getElementById('calculateBMI').addEventListener('click', calculateBMI);
+                    break;
+                    
+                case 'word-counter':
+                    initWordCounter();
+                    break;
+                    
+                case 'password-generator':
+                    initPasswordGenerator();
+                    break;
+                    
+                case 'text-case-converter':
+                    initTextCaseConverter();
+                    break;
+                    
+                case 'percentage-calculator':
+                    initPercentageCalculator();
+                    break;
+                    
+                case 'stopwatch-timer':
+                    initStopwatchTimer();
+                    break;
+                    
+                case 'color-picker':
+                    initColorPicker();
+                    break;
+                    
+                case 'notepad':
+                    initNotepad();
+                    break;
+            }
+        }
+
+        // Tool Initialization Functions
+        function initUnitConverter() {
+            const conversionType = document.getElementById('conversionType');
+            const fromUnit = document.getElementById('fromUnit');
+            const toUnit = document.getElementById('toUnit');
+            
+            // Set up conversion types and units
+            const conversionUnits = {
+                length: [
+                    {name: 'Meters', value: 'm', factor: 1},
+                    {name: 'Kilometers', value: 'km', factor: 1000},
+                    {name: 'Centimeters', value: 'cm', factor: 0.01},
+                    {name: 'Millimeters', value: 'mm', factor: 0.001},
+                    {name: 'Miles', value: 'mi', factor: 1609.34},
+                    {name: 'Yards', value: 'yd', factor: 0.9144},
+                    {name: 'Feet', value: 'ft', factor: 0.3048},
+                    {name: 'Inches', value: 'in', factor: 0.0254}
+                ],
+                weight: [
+                    {name: 'Kilograms', value: 'kg', factor: 1},
+                    {name: 'Grams', value: 'g', factor: 0.001},
+                    {name: 'Milligrams', value: 'mg', factor: 0.000001},
+                    {name: 'Pounds', value: 'lb', factor: 0.453592},
+                    {name: 'Ounces', value: 'oz', factor: 0.0283495},
+                    {name: 'Tons', value: 'ton', factor: 1000},
+                    {name: 'Metric Tons', value: 'tonne', factor: 1000}
+                ],
+                temperature: [
+                    {name: 'Celsius', value: 'c', factor: 1, offset: 0},
+                    {name: 'Fahrenheit', value: 'f', factor: 5/9, offset: -32},
+                    {name: 'Kelvin', value: 'k', factor: 1, offset: -273.15}
+                ],
+                time: [
+                    {name: 'Seconds', value: 's', factor: 1},
+                    {name: 'Minutes', value: 'min', factor: 60},
+                    {name: 'Hours', value: 'hr', factor: 3600},
+                    {name: 'Days', value: 'day', factor: 86400},
+                    {name: 'Weeks', value: 'week', factor: 604800},
+                    {name: 'Months', value: 'month', factor: 2629800}, // Approximate
+                    {name: 'Years', value: 'year', factor: 31557600} // Approximate
+                ],
+                speed: [
+                    {name: 'Meters/Second', value: 'm/s', factor: 1},
+                    {name: 'Kilometers/Hour', value: 'km/h', factor: 0.277778},
+                    {name: 'Miles/Hour', value: 'mph', factor: 0.44704},
+                    {name: 'Knots', value: 'knot', factor: 0.514444},
+                    {name: 'Feet/Second', value: 'ft/s', factor: 0.3048}
+                ]
+            };
+            
+            // Populate units when conversion type changes
+            conversionType.addEventListener('change', function() {
+                const units = conversionUnits[this.value];
+                fromUnit.innerHTML = '';
+                toUnit.innerHTML = '';
+                
+                units.forEach(unit => {
+                    fromUnit.innerHTML += `<option value="${unit.value}">${unit.name}</option>`;
+                    toUnit.innerHTML += `<option value="${unit.value}">${unit.name}</option>`;
+                });
+                
+                // Set toUnit to a different unit than fromUnit if possible
+                if (units.length > 1) {
+                    toUnit.selectedIndex = 1;
+                }
+            });
+            
+            // Trigger change to populate initial units
+            conversionType.dispatchEvent(new Event('change'));
+            
+            // Set up conversion button
+            document.getElementById('convertUnits').addEventListener('click', convertUnits);
+            
+            // Also convert when input values change
+            document.getElementById('fromValue').addEventListener('input', convertUnits);
+            fromUnit.addEventListener('change', convertUnits);
+            toUnit.addEventListener('change', convertUnits);
+        }
+        
+        function initWordCounter() {
+            const textInput = document.getElementById('textInput');
+            textInput.addEventListener('input', updateWordCount);
+            document.getElementById('downloadReport').addEventListener('click', downloadWordReport);
+            updateWordCount(); // Initialize counts
+            
+            // Load any previously saved text
+            const savedText = localStorage.getItem('wordCounterText');
+            if (savedText) {
+                textInput.value = savedText;
+                updateWordCount();
+            }
+            
+            // Save text as user types
+            textInput.addEventListener('input', function() {
+                localStorage.setItem('wordCounterText', this.value);
+            });
+        }
+        
+        function initPasswordGenerator() {
+            const lengthSlider = document.getElementById('passwordLength');
+            lengthSlider.addEventListener('input', function() {
+                document.getElementById('lengthValue').textContent = this.value;
+            });
+            document.getElementById('generatePassword').addEventListener('click', generatePassword);
+            document.getElementById('copyPassword').addEventListener('click', copyPassword);
+            document.getElementById('downloadPassword').addEventListener('click', downloadPassword);
+            generatePassword(); // Generate initial password
+        }
+        
+        function initTextCaseConverter() {
+            const caseInput = document.getElementById('caseInput');
+            const caseOutput = document.getElementById('caseOutput');
+            
+            // Add event listeners to all case buttons
+            document.querySelectorAll('[data-case]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const caseType = this.getAttribute('data-case');
+                    convertCase(caseType);
+                });
+            });
+            
+            // Copy button
+            document.getElementById('copyCaseText').addEventListener('click', function() {
+                caseOutput.select();
+                document.execCommand('copy');
+                showToast('Text copied to clipboard');
+            });
+            
+            // Convert as user types
+            caseInput.addEventListener('input', function() {
+                // If there's text but no conversion yet, default to sentence case
+                if (this.value.trim() && !caseOutput.value) {
+                    convertCase('sentence');
+                }
+            });
+        }
+        
+        function initPercentageCalculator() {
+            const modeSelect = document.getElementById('percentageMode');
+            const inputsDiv = document.getElementById('percentageInputs');
+            
+            // Update input labels when mode changes
+            modeSelect.addEventListener('change', updatePercentageInputs);
+            
+            // Calculate button
+            document.getElementById('calculatePercentage').addEventListener('click', calculatePercentage);
+            
+            // Initialize inputs
+            updatePercentageInputs();
+        }
+        
+        function initStopwatchTimer() {
+            const stopwatchTab = document.getElementById('stopwatchTab');
+            const timerTab = document.getElementById('timerTab');
+            const stopwatchSection = document.getElementById('stopwatchSection');
+            const timerSection = document.getElementById('timerSection');
+            
+            // Tab switching
+            stopwatchTab.addEventListener('click', function() {
+                stopwatchSection.style.display = 'block';
+                timerSection.style.display = 'none';
+                stopwatchTab.classList.remove('btn-secondary');
+                stopwatchTab.classList.add('btn');
+                timerTab.classList.remove('btn');
+                timerTab.classList.add('btn-secondary');
+            });
+            
+            timerTab.addEventListener('click', function() {
+                stopwatchSection.style.display = 'none';
+                timerSection.style.display = 'block';
+                timerTab.classList.remove('btn-secondary');
+                timerTab.classList.add('btn');
+                stopwatchTab.classList.remove('btn');
+                stopwatchTab.classList.add('btn-secondary');
+            });
+            
+            // Stopwatch functionality
+            let stopwatchInterval;
+            let stopwatchTime = 0;
+            let stopwatchRunning = false;
+            
+            document.getElementById('startStopwatch').addEventListener('click', function() {
+                if (stopwatchRunning) {
+                    clearInterval(stopwatchInterval);
+                    this.textContent = 'Start';
+                    stopwatchRunning = false;
+                } else {
+                    stopwatchInterval = setInterval(updateStopwatch, 10);
+                    this.textContent = 'Pause';
+                    stopwatchRunning = true;
+                }
+            });
+            
+            document.getElementById('lapStopwatch').addEventListener('click', function() {
+                if (stopwatchRunning) {
+                    recordLapTime();
+                }
+            });
+            
+            document.getElementById('resetStopwatch').addEventListener('click', function() {
+                clearInterval(stopwatchInterval);
+                stopwatchTime = 0;
+                updateStopwatchDisplay();
+                document.getElementById('startStopwatch').textContent = 'Start';
+                stopwatchRunning = false;
+                document.getElementById('lapTimes').innerHTML = '';
+            });
+            
+            document.getElementById('exportLaps').addEventListener('click', exportLapTimes);
+            
+            // Timer functionality
+            let timerInterval;
+            let timerTime = 0;
+            let timerRunning = false;
+            
+            document.getElementById('startTimer').addEventListener('click', function() {
+                if (!timerRunning) {
+                    const hours = parseInt(document.getElementById('timerHours').value) || 0;
+                    const minutes = parseInt(document.getElementById('timerMinutes').value) || 0;
+                    const seconds = parseInt(document.getElementById('timerSeconds').value) || 0;
+                    
+                    timerTime = hours * 3600 + minutes * 60 + seconds;
+                    
+                    if (timerTime > 0) {
+                        updateTimerDisplay();
+                        timerInterval = setInterval(updateTimer, 1000);
+                        this.textContent = 'Pause';
+                        timerRunning = true;
+                    }
+                } else {
+                    clearInterval(timerInterval);
+                    this.textContent = 'Resume';
+                    timerRunning = false;
+                }
+            });
+            
+            document.getElementById('pauseTimer').addEventListener('click', function() {
+                clearInterval(timerInterval);
+                document.getElementById('startTimer').textContent = 'Resume';
+                timerRunning = false;
+            });
+            
+            document.getElementById('resetTimer').addEventListener('click', function() {
+                clearInterval(timerInterval);
+                timerTime = 0;
+                updateTimerDisplay();
+                document.getElementById('startTimer').textContent = 'Start';
+                timerRunning = false;
+            });
+            
+            // Input validation for timer
+            document.getElementById('timerHours').addEventListener('input', function() {
+                this.value = Math.min(99, Math.max(0, parseInt(this.value) || 0));
+            });
+            
+            document.getElementById('timerMinutes').addEventListener('input', function() {
+                this.value = Math.min(59, Math.max(0, parseInt(this.value) || 0));
+            });
+            
+            document.getElementById('timerSeconds').addEventListener('input', function() {
+                this.value = Math.min(59, Math.max(0, parseInt(this.value) || 0));
+            });
+        }
+        
+        function initColorPicker() {
+            const colorPicker = document.getElementById('colorPicker');
+            const colorPreview = document.getElementById('colorPreview');
+            
+            // Set initial color
+            updateColorValues(colorPicker.value);
+            
+            // Update when color changes
+            colorPicker.addEventListener('input', function() {
+                updateColorValues(this.value);
+            });
+            
+            // Copy color values when clicked
+            document.querySelectorAll('.color-value').forEach(el => {
+                el.addEventListener('click', function() {
+                    const format = this.getAttribute('data-format');
+                    const value = document.getElementById(`${format}Value`).textContent;
+                    copyToClipboard(value);
+                    showToast(`${format.toUpperCase()} value copied to clipboard`);
+                });
+            });
+        }
+        
+        function initNotepad() {
+            const notepadTitle = document.getElementById('notepadTitle');
+            const notepadContent = document.getElementById('notepadContent');
+            
+            // Load saved note if exists
+            const savedTitle = localStorage.getItem('notepadTitle');
+            const savedContent = localStorage.getItem('notepadContent');
+            
+            if (savedTitle) notepadTitle.value = savedTitle;
+            if (savedContent) notepadContent.value = savedContent;
+            
+            // Auto-save functionality
+            notepadTitle.addEventListener('input', saveNote);
+            notepadContent.addEventListener('input', saveNote);
+            
+            // Button actions
+            document.getElementById('saveNote').addEventListener('click', saveNote);
+            document.getElementById('downloadNote').addEventListener('click', downloadNote);
+            document.getElementById('clearNote').addEventListener('click', clearNote);
+        }
+
+        // Tool Function Implementations
+        function convertUnits() {
+            const conversionType = document.getElementById('conversionType').value;
+            const fromValue = parseFloat(document.getElementById('fromValue').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+            
+            if (isNaN(fromValue)) {
+                document.getElementById('toValue').value = '';
+                return;
+            }
+            
+            // Define conversion factors for each type
+            const conversionFactors = {
+                length: {
+                    m: 1,
+                    km: 1000,
+                    cm: 0.01,
+                    mm: 0.001,
+                    mi: 1609.34,
+                    yd: 0.9144,
+                    ft: 0.3048,
+                    in: 0.0254
+                },
+                weight: {
+                    kg: 1,
+                    g: 0.001,
+                    mg: 0.000001,
+                    lb: 0.453592,
+                    oz: 0.0283495,
+                    ton: 1000,
+                    tonne: 1000
+                },
+                temperature: {
+                    // Temperature conversions require special handling
+                    c: {factor: 1, offset: 0},
+                    f: {factor: 5/9, offset: -32},
+                    k: {factor: 1, offset: -273.15}
+                },
+                time: {
+                    s: 1,
+                    min: 60,
+                    hr: 3600,
+                    day: 86400,
+                    week: 604800,
+                    month: 2629800, // Approximate
+                    year: 31557600 // Approximate
+                },
+                speed: {
+                    'm/s': 1,
+                    'km/h': 0.277778,
+                    mph: 0.44704,
+                    knot: 0.514444,
+                    'ft/s': 0.3048
+                }
+            };
+            
+            let result;
+            
+            // Handle temperature conversions separately
+            if (conversionType === 'temperature') {
+                // First convert to Celsius
+                const fromTemp = conversionFactors.temperature[fromUnit];
+                const celsiusValue = (fromValue + fromTemp.offset) * fromTemp.factor;
+                
+                // Then convert from Celsius to target unit
+                const toTemp = conversionFactors.temperature[toUnit];
+                result = (celsiusValue / toTemp.factor) - toTemp.offset;
+            } else {
+                // Convert to base unit first, then to target unit
+                const valueInBase = fromValue * conversionFactors[conversionType][fromUnit];
+                result = valueInBase / conversionFactors[conversionType][toUnit];
+            }
+            
+            document.getElementById('toValue').value = result.toFixed(6);
+        }
+        
+        function calculateAge() {
+            const birthDate = new Date(document.getElementById('birthDate').value);
+            const today = new Date();
+            
+            if (isNaN(birthDate.getTime())) {
+                showToast('Please select a valid date', 'error');
+                return;
+            }
+            
+            if (birthDate > today) {
+                showToast('Birth date cannot be in the future', 'error');
+                return;
+            }
+            
+            let years = today.getFullYear() - birthDate.getFullYear();
+            let months = today.getMonth() - birthDate.getMonth();
+            let days = today.getDate() - birthDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                // Get the number of days in the previous month
+                const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            // Calculate next birthday
+            const nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+            if (nextBirthday < today) {
+                nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+            }
+            
+            const daysUntilBirthday = Math.ceil((nextBirthday - today) / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('exactAge').textContent = `${years} years, ${months} months, ${days} days`;
+            document.getElementById('nextBirthday').textContent = `Your next birthday is in ${daysUntilBirthday} days`;
+            document.getElementById('ageResult').style.display = 'block';
+        }
+        
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            
+            if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+                showToast('Please enter valid height and weight values', 'error');
+                return;
+            }
+            
+            // Calculate BMI (weight in kg / (height in m)^2)
+            const heightInMeters = height / 100;
+            const bmi = weight / (heightInMeters * heightInMeters);
+            
+            let category, range;
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                range = 'Below 18.5';
+            } else if (bmi < 25) {
+                category = 'Normal weight';
+                range = '18.5 - 24.9';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+                range = '25 - 29.9';
+            } else {
+                category = 'Obesity';
+                range = '30 or above';
+            }
+            
+            document.getElementById('bmiValue').textContent = `BMI: ${bmi.toFixed(1)}`;
+            document.getElementById('bmiCategory').textContent = `Category: ${category}`;
+            document.getElementById('bmiRange').textContent = `Healthy BMI range: ${range}`;
+            document.getElementById('bmiResult').style.display = 'block';
+        }
+        
+        function updateWordCount() {
+            const text = document.getElementById('textInput').value;
+            const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            const charCount = text.length;
+            const charCountNoSpaces = text.replace(/\s/g, '').length;
+            const sentenceCount = text.split(/[.!?]+/).filter(Boolean).length;
+            const paragraphCount = text.split(/\n\s*\n/).filter(Boolean).length;
+            const readingTime = Math.ceil(wordCount / 200); // Average reading speed
+            
+            document.getElementById('wordCount').textContent = wordCount;
+            document.getElementById('charCount').textContent = charCount;
+            document.getElementById('charCountNoSpaces').textContent = charCountNoSpaces;
+            document.getElementById('sentenceCount').textContent = sentenceCount;
+            document.getElementById('paragraphCount').textContent = paragraphCount;
+            document.getElementById('readingTime').textContent = `${readingTime} min`;
+        }
+        
+        function downloadWordReport() {
+            const text = document.getElementById('textInput').value;
+            if (!text.trim()) {
+                showToast('Please enter some text first', 'error');
+                return;
+            }
+            
+            const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            const charCount = text.length;
+            const charCountNoSpaces = text.replace(/\s/g, '').length;
+            const sentenceCount = text.split(/[.!?]+/).filter(Boolean).length;
+            const paragraphCount = text.split(/\n\s*\n/).filter(Boolean).length;
+            const readingTime = Math.ceil(wordCount / 200);
+            
+            const report = `Text Analysis Report\n\n` +
+                          `Word Count: ${wordCount}\n` +
+                          `Character Count: ${charCount}\n` +
+                          `Character Count (no spaces): ${charCountNoSpaces}\n` +
+                          `Sentence Count: ${sentenceCount}\n` +
+                          `Paragraph Count: ${paragraphCount}\n` +
+                          `Estimated Reading Time: ${readingTime} minutes\n\n` +
+                          `Text Content:\n${text}`;
+            
+            downloadFile(report, 'text-analysis-report.txt', 'text/plain');
+            showToast('Report downloaded successfully');
+        }
+        
+        function generatePassword() {
+            const length = parseInt(document.getElementById('passwordLength').value);
+            const uppercase = document.getElementById('uppercase').checked;
+            const lowercase = document.getElementById('lowercase').checked;
+            const numbers = document.getElementById('numbers').checked;
+            const symbols = document.getElementById('symbols').checked;
+            
+            if (!uppercase && !lowercase && !numbers && !symbols) {
+                showToast('Please select at least one character type', 'error');
+                return;
+            }
+            
+            const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+            const numberChars = '0123456789';
+            const symbolChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            let allowedChars = '';
+            if (uppercase) allowedChars += uppercaseChars;
+            if (lowercase) allowedChars += lowercaseChars;
+            if (numbers) allowedChars += numberChars;
+            if (symbols) allowedChars += symbolChars;
+            
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * allowedChars.length);
+                password += allowedChars[randomIndex];
+            }
+            
+            document.getElementById('generatedPassword').value = password;
+            checkPasswordStrength(password);
+        }
+        
+        function copyPassword() {
+            const passwordField = document.getElementById('generatedPassword');
+            passwordField.select();
+            document.execCommand('copy');
+            showToast('Password copied to clipboard');
+        }
+        
+        function downloadPassword() {
+            const password = document.getElementById('generatedPassword').value;
+            if (!password) {
+                showToast('Generate a password first', 'error');
+                return;
+            }
+            
+            const content = `Generated Password: ${password}\n\nGenerated on: ${new Date().toLocaleString()}\nBy: All-in-One Tools Hub`;
+            downloadFile(content, 'password.txt', 'text/plain');
+            showToast('Password downloaded as TXT');
+        }
+        
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            let feedback = '';
+            
+            // Length check
+            if (password.length >= 12) strength += 2;
+            else if (password.length >= 8) strength += 1;
+            
+            // Character variety checks
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[a-z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 2;
+            
+            // Update strength meter
+            const strengthMeter = document.getElementById('strengthMeter');
+            
+            if (strength >= 6) {
+                feedback = 'Strong password';
+                strengthMeter.style.width = '100%';
+                strengthMeter.style.backgroundColor = 'var(--success)';
+            } else if (strength >= 4) {
+                feedback = 'Medium password';
+                strengthMeter.style.width = '66%';
+                strengthMeter.style.backgroundColor = 'var(--warning)';
+            } else {
+                feedback = 'Weak password';
+                strengthMeter.style.width = '33%';
+                strengthMeter.style.backgroundColor = 'var(--danger)';
+            }
+            
+            document.getElementById('passwordStrength').textContent = feedback;
+        }
+        
+        function convertCase(caseType) {
+            const inputText = document.getElementById('caseInput').value;
+            let outputText = '';
+            
+            switch(caseType) {
+                case 'upper':
+                    outputText = inputText.toUpperCase();
+                    break;
+                case 'lower':
+                    outputText = inputText.toLowerCase();
+                    break;
+                case 'title':
+                    outputText = inputText.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+                    break;
+                case 'sentence':
+                    outputText = inputText.toLowerCase().replace(/(^\s*|[.!?]\s+)(\w)/g, (match, p1, p2) => p1 + p2.toUpperCase());
+                    break;
+                case 'camel':
+                    outputText = inputText.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (match, chr) => chr.toUpperCase());
+                    break;
+                case 'pascal':
+                    outputText = inputText.toLowerCase().replace(/\b\w/g, c => c.toUpperCase()).replace(/[^a-zA-Z0-9]+/g, '');
+                    break;
+                case 'snake':
+                    outputText = inputText.toLowerCase().replace(/\s+/g, '_');
+                    break;
+                case 'kebab':
+                    outputText = inputText.toLowerCase().replace(/\s+/g, '-');
+                    break;
+                default:
+                    outputText = inputText;
+            }
+            
+            document.getElementById('caseOutput').value = outputText;
+        }
+        
+        function updatePercentageInputs() {
+            const mode = document.getElementById('percentageMode').value;
+            const inputsDiv = document.getElementById('percentageInputs');
+            
+            inputsDiv.innerHTML = '';
+            
+            switch(mode) {
+                case 'xOfY':
+                    inputsDiv.innerHTML = `
+                        <div class="input-group">
+                            <label for="percentX">Percentage (X)</label>
+                            <input type="number" id="percentX" placeholder="Enter percentage">
+                        </div>
+                        <div class="input-group">
+                            <label for="percentY">Value (Y)</label>
+                            <input type="number" id="percentY" placeholder="Enter value">
+                        </div>
+                    `;
+                    break;
+                    
+                case 'incDec':
+                    inputsDiv.innerHTML = `
+                        <div class="input-group">
+                            <label for="percentX">Value (X)</label>
+                            <input type="number" id="percentX" placeholder="Enter value">
+                        </div>
+                        <div class="input-group">
+                            <label for="percentY">Percentage (Y)</label>
+                            <input type="number" id="percentY" placeholder="Enter percentage">
+                        </div>
+                        <div class="input-group">
+                            <label>
+                                <input type="radio" name="incDec" id="increase" checked>
+                                Increase
+                            </label>
+                            <label>
+                                <input type="radio" name="incDec" id="decrease">
+                                Decrease
+                            </label>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'aOfB':
+                    inputsDiv.innerHTML = `
+                        <div class="input-group">
+                            <label for="percentX">Value (A)</label>
+                            <input type="number" id="percentX" placeholder="Enter value A">
+                        </div>
+                        <div class="input-group">
+                            <label for="percentY">Value (B)</label>
+                            <input type="number" id="percentY" placeholder="Enter value B">
+                        </div>
+                    `;
+                    break;
+            }
+        }
+        
+        function calculatePercentage() {
+            const mode = document.getElementById('percentageMode').value;
+            const x = parseFloat(document.getElementById('percentX').value);
+            const y = parseFloat(document.getElementById('percentY').value);
+            
+            if (isNaN(x) || isNaN(y)) {
+                showToast('Please enter valid numbers', 'error');
+                return;
+            }
+            
+            let resultText = '';
+            
+            switch(mode) {
+                case 'xOfY':
+                    resultText = `${x}% of ${y} = ${(x * y / 100).toFixed(2)}`;
+                    break;
+                    
+                case 'incDec':
+                    const isIncrease = document.getElementById('increase').checked;
+                    const change = isIncrease ? (x * (1 + y/100)) : (x * (1 - y/100));
+                    resultText = `${x} ${isIncrease ? 'increased' : 'decreased'} by ${y}% = ${change.toFixed(2)}`;
+                    break;
+                    
+                case 'aOfB':
+                    resultText = `${x} is ${(x / y * 100).toFixed(2)}% of ${y}`;
+                    break;
+            }
+            
+            document.getElementById('percentageResultText').textContent = resultText;
+            document.getElementById('percentageResult').style.display = 'block';
+        }
+        
+        function updateStopwatch() {
+            stopwatchTime += 10;
+            updateStopwatchDisplay();
+        }
+        
+        function updateStopwatchDisplay() {
+            const milliseconds = Math.floor((stopwatchTime % 1000) / 10);
+            const seconds = Math.floor((stopwatchTime / 1000) % 60);
+            const minutes = Math.floor((stopwatchTime / (1000 * 60)) % 60);
+            const hours = Math.floor(stopwatchTime / (1000 * 60 * 60));
+            
+            document.getElementById('stopwatchDisplay').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
+        }
+        
+        function recordLapTime() {
+            const lapTime = document.getElementById('stopwatchDisplay').textContent;
+            const lapTimesContainer = document.getElementById('lapTimes');
+            
+            const lapElement = document.createElement('div');
+            lapElement.textContent = `Lap ${lapTimesContainer.children.length + 1}: ${lapTime}`;
+            lapTimesContainer.appendChild(lapElement);
+        }
+        
+        function exportLapTimes() {
+            const lapTimes = document.getElementById('lapTimes');
+            if (lapTimes.children.length === 0) {
+                showToast('No lap times to export', 'error');
+                return;
+            }
+            
+            let content = 'Lap Times\n';
+            content += `Generated on: ${new Date().toLocaleString()}\n\n`;
+            
+            for (let i = 0; i < lapTimes.children.length; i++) {
+                content += `${lapTimes.children[i].textContent}\n`;
+            }
+            
+            downloadFile(content, 'lap-times.txt', 'text/plain');
+            showToast('Lap times exported as TXT');
+        }
+        
+        function updateTimer() {
+            if (timerTime <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('startTimer').textContent = 'Start';
+                timerRunning = false;
+                
+                // Play sound
+                const sound = document.getElementById('timerSound');
+                sound.play();
+                
+                showToast('Timer finished!', 'warning');
+                return;
+            }
+            
+            timerTime--;
+            updateTimerDisplay();
+        }
+        
+        function updateTimerDisplay() {
+            const hours = Math.floor(timerTime / 3600);
+            const minutes = Math.floor((timerTime % 3600) / 60);
+            const seconds = timerTime % 60;
+            
+            document.getElementById('timerDisplay').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        function updateColorValues(colorHex) {
+            document.getElementById('colorPreview').style.backgroundColor = colorHex;
+            document.getElementById('hexValue').textContent = colorHex;
+            
+            // Convert HEX to RGB
+            const r = parseInt(colorHex.substring(1, 3), 16);
+            const g = parseInt(colorHex.substring(3, 5), 16);
+            const b = parseInt(colorHex.substring(5, 7), 16);
+            document.getElementById('rgbValue').textContent = `rgb(${r}, ${g}, ${b})`;
+            
+            // Convert RGB to HSL
+            const hsl = rgbToHsl(r, g, b);
+            document.getElementById('hslValue').textContent = `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`;
+        }
+        
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+                h = s = 0; // achromatic
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                
+                h /= 6;
+            }
+            
+            return {
+                h: h * 360,
+                s: s * 100,
+                l: l * 100
+            };
+        }
+        
+        function saveNote() {
+            const title = document.getElementById('notepadTitle').value;
+            const content = document.getElementById('notepadContent').value;
+            
+            localStorage.setItem('notepadTitle', title);
+            localStorage.setItem('notepadContent', content);
+            
+            showToast('Note saved automatically');
+        }
+        
+        function downloadNote() {
+            const title = document.getElementById('notepadTitle').value || 'Untitled Note';
+            const content = document.getElementById('notepadContent').value;
+            
+            if (!content.trim()) {
+                showToast('Note is empty', 'error');
+                return;
+            }
+            
+            const noteContent = `${title}\n\n${content}\n\nCreated on: ${new Date().toLocaleString()}`;
+            downloadFile(noteContent, `${title.replace(/\s+/g, '-')}.txt`, 'text/plain');
+            showToast('Note downloaded as TXT');
+        }
+        
+        function clearNote() {
+            if (confirm('Are you sure you want to clear this note?')) {
+                document.getElementById('notepadTitle').value = '';
+                document.getElementById('notepadContent').value = '';
+                localStorage.removeItem('notepadTitle');
+                localStorage.removeItem('notepadContent');
+                showToast('Note cleared');
+            }
+        }
+        
+        // Utility Functions
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+        
+        function downloadFile(content, fileName, contentType) {
+            const blob = new Blob([content], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
